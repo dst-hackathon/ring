@@ -11,9 +11,9 @@ func main() {
 	defer db.Close()
 
 	repo := persistence.NewEmployeeRepo(db)
-	e := repo.FindByFirstName("Sid")
+	e := repo.FindByFirstName("Peter")
 	fmt.Println(e)
 
-	quin := &entity.Employee{FirstName: "Quin 2", LastName: "Liss"}
+	quin := &entity.Employee{FirstName: "Peter", LastName: "Quin"}
 	repo.Save(*quin)
 }

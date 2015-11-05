@@ -12,8 +12,8 @@ type EmployeeRepoHandler struct {
 	session *mgo.Session
 }
 
-func NewEmployeeRepo(db *Database) repository.Employee {
-	return &EmployeeRepoHandler{db.name, db.Session()}
+func NewEmployeeRepo(db Database) repository.Employee {
+	return &EmployeeRepoHandler{db.Name(), db.Session()}
 }
 
 func (handler EmployeeRepoHandler) C() string {
