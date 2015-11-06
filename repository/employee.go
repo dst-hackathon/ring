@@ -9,6 +9,8 @@ type Repository interface {
 }
 
 type Employee interface {
+	All() []entity.Employee
 	Save(employee entity.Employee) entity.Employee
+	FindByID(id string) entity.Employee
 	FindByFirstName(name string) entity.Employee
 }

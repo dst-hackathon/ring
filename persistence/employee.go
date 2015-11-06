@@ -20,6 +20,28 @@ func (handler EmployeeRepoHandler) C() string {
 	return "employees"
 }
 
+func (handler EmployeeRepoHandler) All() []entity.Employee {
+	c := handler.session.DB(handler.DB).C(handler.C())
+	var employees []entity.Employee
+	err := c.Find(nil).All(&employees)
+	if err != nil {
+		panic(err)
+	}
+
+	return employees
+}
+
+func (handler EmployeeRepoHandler) FindByID(id string) entity.Employee {
+	c := handler.session.DB(handler.DB).C(handler.C())
+	employee := entity.Employee{}
+	err := c.Find(bson.M{"_id": id}).One(&employee)
+	if err != nil {
+		panic(err)
+	}
+
+	return employee
+}
+
 func (handler EmployeeRepoHandler) FindByFirstName(name string) entity.Employee {
 	c := handler.session.DB(handler.DB).C(handler.C())
 	employee := entity.Employee{}
