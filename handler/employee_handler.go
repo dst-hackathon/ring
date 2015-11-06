@@ -15,8 +15,8 @@ type Employee struct {
 func (h Employee) Index(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	emps := h.Repo.All()
 	res := make([]interface{}, len(emps))
-	for i, e := range emps {
-		res[i] = &e
+	for i := 0; i < len(emps); i++ {
+		res[i] = &emps[i]
 	}
 
 	w.Header().Set("Content-Type", "application/vnd.api+json")
